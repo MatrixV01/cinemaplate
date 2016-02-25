@@ -3,30 +3,32 @@
   <h1 style="background-color:black; color: #ccc;">My Profile</h1>
   <form name="profileForm" class="" action="index.html" method="post">
     <img src="http://market.ionic.io/img/user-default.png" alt="" style="height: 200px; width: 200px;" />
-    <h4 class="setting"><span>Username <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>Bobalice</h4>
-    <h4 class="setting"><span>Password <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>********</h4>
-    <h4 class="setting"><span>E-mail Address <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>Bobalice@gmail.com</h4>
-    <h4 class="setting"><span>Phone Number <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>512-555-1212</h4>
+    <h4 class=""><span>Username <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>Bobalice</h4>
+    <h4 class=""><span>Password <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>********</h4>
+    <h4 class=""><span>E-mail Address <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>Bobalice@gmail.com</h4>
+    <h4 class=""><span>Phone Number <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;"></i></span>512-555-1212</h4>
+    <h4 class=""><span>Change Password </span><input type='text' ng-model='user.username' placeholder="Password" required></h4>
+    <!-- TODO Add change password input, button -->
   </form>
   <div class="" style="height: 500px; width: auto; background-color: #555;">
     <h4>Saved Pairings</h4>
-      <div class="" style="float: left; width: 140px; margin-left: 575px; padding-right: 10px; border-right: 5px solid #f8e71c;">
-        <h5>Movie/TV</h5>
-        <h6>
+    <div class="" style="float: left; width: 140px; margin-left: 575px; padding-right: 10px; border-right: 5px solid #f8e71c;">
+      <h5>Movie/TV</h5>
+      <h6>
           The Crow {{ movie.movie_title }}
         </h6>
-        <h6>
+      <h6>
           Sin City {{ movie.movie_title }}
         </h6>
-      </div>
-      <div class="" style="float:left; width: 140px; margin-left: 5px;">
-        <h5>Restaurant</h5>
-        <h6>
+    </div>
+    <div class="" style="float:left; width: 140px; margin-left: 5px;">
+      <h5>Restaurant</h5>
+      <h6>
           Tatsu-Ya {{ restaurant.restaurant_name }}
         </h6>
-        <h6>
+      <h6>
           Slake Cafe {{ restaurant.restaurant_name }}
         </h6>
-      </div>
+    </div>
   </div>
 </div>
