@@ -26,12 +26,6 @@ pgClient.connect(function(err){
         return console.log('could not connect to postgres', err);
    }
 })
-
-//quick patch for closing postgres connection
-setTimeout(function(){
-  pgClient.end();
-}, 20000)
-
 //
 // START Movie insert
 //

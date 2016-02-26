@@ -12,14 +12,6 @@ var pgConConfig = {
 
 var pgClient = new pg.Client(pgConConfig);
 
-pgClient.connect();
-
-//quick patch for closing postgres connection
-setTimeout(function(){
-  pgClient.end();
-}, 20000)
-
-
 
 exports.addRestaurants = function(zip){
 
@@ -58,8 +50,8 @@ exports.addRestaurants = function(zip){
               console.log(x+1, ">>>", data[x].name)
               restCuisines = restCuisines.slice(0,-2)
 
-              // pgClient = new pg.Client(pgConConfig);
-              // pgClient.connect(function(err){
+              pgClient = new pg.Client(pgConConfig);
+              pgClient.connect(function(err){
                 if (err){
                   return console.log('could not connect to postgres', err);
                 }
@@ -67,7 +59,6 @@ exports.addRestaurants = function(zip){
                 
                 var newRestaurants = pgClient.query(sqlInsertRestaurants, [restName, restDescription, restPhone, restStreetAddress, restCity, restState, restZipCode, restImageUrl, restEat24Url, restYelpRating, restYelpId, restCuisines], function (err, result){
                     if (err){ 
-                      // pgClient.end();
                       rej(err);  
                       console.error('error inserting restaurant.', err.message);          
                       return; 
@@ -75,24 +66,21 @@ exports.addRestaurants = function(zip){
                     else {
                       if (result.rows[0].restaurant_id !== undefined){
                         var newRestaurantID = result.rows[0].restaurant_id
-                        // pgClient.end();
                       }
                       console.log("NEW RESTAURANT ID: ", newRestaurantID)
                     }
                   })
                     newRestaurants.on('end', function(result){
                       console.log('a new restauarant called .on("end") here >> ', result);
-                      // pgClient.end();
                       res();
                       return result;
                     });
                     newRestaurants.on('error', function(err){
                       console.log('restaurant query error: ', err);
-                      // pgClient.end();
                       rej();
                       return err;
                     })
-                  // });
+                  });
               });
             }
 
