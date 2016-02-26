@@ -7,7 +7,7 @@
       <ul class="navigation">
         <li><a href='/#/'><i class="fa fa-map-marker"></i>&nbsp;{{ searchZip }}</a></li>
         <li><a class='twitter-share-button share' href='https://twitter.com/intent/tweet?url=https://cinemaplate.herokuapp.com/&text=Watching%20"{{movie.movie_title}}"%20and%20eating%20dinner%20from%20{{restaurant.restaurant_name}}%20thanks%20to%20%23cinemaplate!'><i class="fa fa-twitter"></i>&nbsp;Share</a></li>
-      
+
           <li><select placeholder="Navigation" class="navbar" ng-model="userChoice.page" ng-options="o as o for o in pages" ng-change="navigation()">
           <option value="" style="width: 150px">- Nav -</option>
           </select></li>
@@ -50,7 +50,7 @@
           <a ng-show="movie.movie_url" href="{{ movie.movie_url }}" target="_new" class="button"><i class="fa fa-film"></i>Watch On Netflix</a>
           <a ng-show="movie.tv_url" href="{{ movie.tv_url }}" target="_new" class="button"><i class="fa fa-film"></i>Watch On Netflix</a>
         </div>
-        <!-- Movie Mini Description-->  
+        <!-- Movie Mini Description-->
         <div class="summary-wrapper u-cf">
           <img src="{{ movie.movie_image_url }}" ng-show="movie.movie_image_url"/>
           <img src="{{ movie.tv_image_url }}" ng-show="movie.tv_image_url"/>
@@ -85,6 +85,15 @@
             </td>
           </tr>
         </table>
+        <!-- Input movie.movie_trailer into src= -->
+        <!-- <iframe width="420" height="315" src="http://www.youtube.com/embed/IytNBm8WA1c" frameborder="0" allowfullscreen></iframe> -->
+        <!-- <div class="" ng-controller="MatchCtrl">
+          {{movie.movie_trailer}}
+        </div> -->
+        <div class="">
+          {{movie.trailerUrl}}
+        </div>
+        <youtube></youtube>
 
       </div>
 
@@ -93,7 +102,7 @@
           <a href="{{ restaurant.restaurant_url }}" target="_new" class="button"><i class="fa fa-cutlery"></i>&nbsp;Place An Order</a>
         </div>
 
-        <!-- Food Mini Description-->  
+        <!-- Food Mini Description-->
         <div class="summary-wrapper u-cf">
           <img src="{{ restaurant.restaurant_image_url }}" />
           <p class="summary fade fade-restaurant">

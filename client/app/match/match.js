@@ -40,7 +40,7 @@ angular.module('cinePlate.match', [])
   // }
 
   $scope.stars = [1, 2, 3, 4, 5];
-  $scope.movie = { 
+  $scope.movie = {
     title: 'Kung Fu Panda',
     rating: 4
   }
@@ -136,3 +136,10 @@ angular.module('cinePlate.match', [])
   $scope.generate1stMatch();
 
 }])
+
+.directive('youtube', function() {
+  return {
+    restrict: 'E',
+    template: '<iframe width="420" height="315" src="http://www.youtube.com/embed/IytNBm8WA1c" frameborder="0" allowfullscreen></iframe>'
+  };
+});
