@@ -1,9 +1,3 @@
-
-//THIS FILE IS NO LONGER REQUIRED ON INDEX.JS, as restaurants can now be added
-//dynamically and do not need to be seeded.
-
-
-
 var pg = require('pg');
 var yelp = require('./helpers/yelpHelp');
 
