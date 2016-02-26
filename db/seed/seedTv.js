@@ -31,6 +31,12 @@ pgClient.connect(function(err){
    }
 })
 
+//quick patch for closing postgres connection
+setTimeout(function(){
+  pgClient.end();
+}, 20000)
+
+
 //
 // START tv show insert
 //

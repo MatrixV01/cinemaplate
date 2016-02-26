@@ -17,6 +17,12 @@ pgClient.connect(function(err){
    }
 })
 
+//quick patch for closing postgres connection
+setTimeout(function(){
+  pgClient.end();
+}, 20000)
+
+
 //Trailers Backend - breakdown:
   //1) seed ids to db [done]
   //3) get ids from db [done]

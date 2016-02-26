@@ -12,7 +12,7 @@ var suggestions = require('./suggestions.js');
 var yelp = require('../db/seed/addRestaurant_newZip.js');
 
 
-require('../db/seed/seedRestaurant.js');
+// require('../db/seed/seedRestaurant.js');
 require('../db/seed/seedMovie.js');
 
 //this is delayed by 20 seconds to avoid maxing out the
@@ -24,7 +24,7 @@ setTimeout(function(){
 //seeds trailers after 40 seconds. see above!
 setTimeout(function(){
   require('../db/seed/seedTrailer.js');
-}, 40000);
+}, 50000);
 
 
 //
