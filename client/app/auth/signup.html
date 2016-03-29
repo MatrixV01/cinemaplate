@@ -1,10 +1,14 @@
 <div class='signin-signup-content'>
   <h4>Sign-up</h4>
   <form name="signupForm" class="signin-signupform" ng-submit='signup()'>
-    <input class="signin-signupinput" type='text' ng-model='user.username' placeholder="Username" required><br>
-    <input class="signin-signupinput" type="password" ng-model='user.password' placeholder="Password" required><br>
-    <input class="signin-signupinput" type="email" ng-model='user.email' placeholder="Email" required><br>
-    <input class="signin-signupinput" type="location" ng-model='user.location' placeholder="Default Zipcode" required><br>
+    <input class="signin-signupinput" type='text' ng-model='user.username' placeholder="Username" required>
+    <br>
+    <input class="signin-signupinput" type="password" ng-model='user.password' placeholder="Password" required>
+    <br>
+    <input class="signin-signupinput" type="email" ng-model='user.email' placeholder="Email" required>
+    <br>
+    <input class="signin-signupinput" type="location" ng-model='user.location' placeholder="Default Zipcode" required>
+    <br>
     <button class="signin-signupbutton">Sign up</button>
   </form>
   <a href="#/signin">Already have an account? <strong>Sign in</strong> ...</a>

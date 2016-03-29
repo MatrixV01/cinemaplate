@@ -1,139 +1,144 @@
 <!-- Navigation Bar / Header -->
-  <div ng-controller="MatchCtrl">
+<div ng-controller="MatchCtrl">
   <div class="masthead u-cf">
     <div class="row">
       <a href="" class="generate-match" ng-click="generateMatch()"><i class="fa fa-refresh" ng-class="{'fa-spin': isActive}"></i></a>
-      <a href="/#/"><img src="../img/cinemplate-logo.png" class="logo"/></a>
+      <a href="/#/"><img src="../img/cinemplate-logo.png" class="logo" /></a>
       <ul class="navigation">
         <li><a href='/#/'><i class="fa fa-map-marker"></i>&nbsp;{{ searchZip }}</a></li>
-        <li><a class='twitter-share-button share' href='https://twitter.com/intent/tweet?url=https://cinemaplate.herokuapp.com/&text=Watching%20"{{movie.movie_title}}"%20and%20eating%20dinner%20from%20{{restaurant.restaurant_name}}%20thanks%20to%20%23cinemaplate!'><i class="fa fa-twitter"></i>&nbsp;Share</a></li>
-      
-          <li><select placeholder="Navigation" class="navbar" ng-model="userChoice.page" ng-options="o as o for o in pages" ng-change="navigation()">
-          <option value="" style="width: 150px">- Nav -</option>
-          </select></li>
+        <li>
+          <a class='twitter-share-button share' href='https://twitter.com/intent/tweet?url=https://cinemaplate.herokuapp.com/&text=Watching%20"{{movie.movie_title}}"%20and%20eating%20dinner%20from%20{{restaurant.restaurant_name}}%20thanks%20to%20%23cinemaplate!'><i class="fa fa-twitter"></i>&nbsp;Share</a>
+        </li>
+
+        <li>
+          <select placeholder="Navigation" class="navbar" ng-model="userChoice.page" ng-options="o as o for o in pages" ng-change="navigation()">
+            <option value="" style="width: 150px">- Nav -</option>
+          </select>
+        </li>
 
       </ul>
     </div>
   </div>
 
-<div >
-  <div class='match-info-bar u-cf'>
-    <div class="row">
+  <div>
+    <div class='match-info-bar u-cf'>
+      <div class="row">
 
-      <div class="one-half column header movie-bar animate-show" ng-show="contentLoaded">
-        <div class="star-rating">
-          <span class="star" ng-repeat="star in stars" ng-class="{selected: movie.movie_rating > $index}"><i class="fa fa-star"></i></span>
+        <div class="one-half column header movie-bar animate-show" ng-show="contentLoaded">
+          <div class="star-rating">
+            <span class="star" ng-repeat="star in stars" ng-class="{selected: movie.movie_rating > $index}"><i class="fa fa-star"></i></span>
+          </div>
+          <h2><a href="{{ movie.movie_url }}" target="_new">{{ movie.movie_title }} {{ movie.tv_title }}</a><span ng-show="movieUnlocked" class="unlock" ng-click="lockMovie()"><i class="fa fa-unlock-alt" style="margin-left: 20px"></i></span><span ng-hide="movieUnlocked" class="unlock" ng-click="lockMovie()"><i class="fa fa-lock" style="margin-left: 20px"></i></span></h2>
+          <i class="fa fa-unlock-alt"></i>
+          <ul class="header-title-meta">
+            <li>{{ movie.movie_genres }} {{ movie.tv_genres }}</li>
+          </ul>
         </div>
-        <h2><a href="{{ movie.movie_url }}" target="_new">{{ movie.movie_title }} {{ movie.tv_title }}</a><span ng-show="movieUnlocked" class="unlock" ng-click="lockMovie()"><i class="fa fa-unlock-alt" style="margin-left: 20px"></i></span><span ng-hide="movieUnlocked" class="unlock" ng-click="lockMovie()"><i class="fa fa-lock" style="margin-left: 20px"></i></span></h2>
-        <i class="fa fa-unlock-alt"></i>
-        <ul class="header-title-meta">
-          <li>{{ movie.movie_genres }} {{ movie.tv_genres }}</li>
-        </ul>
-      </div>
 
-      <div class="one-half column header food-bar animate-show" ng-show="contentLoaded">
-        <div class="star-rating">
-          <span class="star" ng-repeat="star in stars" ng-class="{selected: restaurant.restaurant_yelp_rating > $index}"><i class="fa fa-star"></i></span>
+        <div class="one-half column header food-bar animate-show" ng-show="contentLoaded">
+          <div class="star-rating">
+            <span class="star" ng-repeat="star in stars" ng-class="{selected: restaurant.restaurant_yelp_rating > $index}"><i class="fa fa-star"></i></span>
+          </div>
+          <h2><a href="{{ restaurant.restaurant_url }} "target="_new">{{ restaurant.restaurant_name }}</a><span ng-show="restaurantUnlocked" class="unlock" ng-click="lockRestaurant()"><i class="fa fa-unlock-alt" style="margin-left: 20px"></i></span><span ng-hide="restaurantUnlocked" class="unlock" ng-click="lockRestaurant()"><i class="fa fa-lock" style="margin-left: 20px"></i></span></h2>
+          <ul class="header-title-meta">
+            <li>{{ restaurant.restaurant_cuisines }}</li>
+          </ul>
         </div>
-        <h2><a href="{{ restaurant.restaurant_url }} "target="_new">{{ restaurant.restaurant_name }}</a><span ng-show="restaurantUnlocked" class="unlock" ng-click="lockRestaurant()"><i class="fa fa-unlock-alt" style="margin-left: 20px"></i></span><span ng-hide="restaurantUnlocked" class="unlock" ng-click="lockRestaurant()"><i class="fa fa-lock" style="margin-left: 20px"></i></span></h2>
-        <ul class="header-title-meta">
-          <li>{{ restaurant.restaurant_cuisines }}</li>
-        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="match-details u-cf">
-    <div class="row">
-      <div class="one-half column animate-show" ng-show="contentLoaded">
-        <div class="cta">
-          <a ng-show="movie.movie_url" href="{{ movie.movie_url }}" target="_new" class="button"><i class="fa fa-film"></i>Watch On Netflix</a>
-          <a ng-show="movie.tv_url" href="{{ movie.tv_url }}" target="_new" class="button"><i class="fa fa-film"></i>Watch On Netflix</a>
-        </div>
-        <!-- Movie Mini Description-->  
-        <div class="summary-wrapper u-cf">
-          <img src="{{ movie.movie_image_url }}" ng-show="movie.movie_image_url"/>
-          <img src="{{ movie.tv_image_url }}" ng-show="movie.tv_image_url"/>
-          <p class="summary fade">
-            {{ movie.movie_summary }} {{ movie.tv_summary }}
-          </p>
-        </div>
+    <div class="match-details u-cf">
+      <div class="row">
+        <div class="one-half column animate-show" ng-show="contentLoaded">
+          <div class="cta">
+            <a ng-show="movie.movie_url" href="{{ movie.movie_url }}" target="_new" class="button"><i class="fa fa-film"></i>Watch On Netflix</a>
+            <a ng-show="movie.tv_url" href="{{ movie.tv_url }}" target="_new" class="button"><i class="fa fa-film"></i>Watch On Netflix</a>
+          </div>
+          <!-- Movie Mini Description-->
+          <div class="summary-wrapper u-cf">
+            <img src="{{ movie.movie_image_url }}" ng-show="movie.movie_image_url" />
+            <img src="{{ movie.tv_image_url }}" ng-show="movie.tv_image_url" />
+            <p class="summary fade">
+              {{ movie.movie_summary }} {{ movie.tv_summary }}
+            </p>
+          </div>
 
-        <table>
-          <tr>
-            <td>
-              <strong>Release Date</strong>
-            </td>
-            <td>
-              {{ movie.movie_release_date | date:'MMM d, yyyy' }} {{ movie.tv_release_date | date:'MMM d, yyyy' }}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Genre</strong>
-            </td>
-            <td>
-              {{ movie.movie_genres }} {{ movie.tv_genres }}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Rating</strong>
-            </td>
-            <td>
-              {{ movie.movie_rating }} {{ movie.tv_rating }}
-            </td>
-          </tr>
-        </table>
-        <button class="savethismoviebutton" ng-click="goToSignin()">Save this movie or show</button><button class="TvMovieToggleButton" ng-click="">Toggle- Movies or TV</button>
-      </div>
-
-      <div class="one-half column animate-show" ng-show="contentLoaded">
-        <div class="cta u-cf">
-          <a href="{{ restaurant.restaurant_url }}" target="_new" class="button"><i class="fa fa-cutlery"></i>&nbsp;Place An Order</a>
+          <table>
+            <tr>
+              <td>
+                <strong>Release Date</strong>
+              </td>
+              <td>
+                {{ movie.movie_release_date | date:'MMM d, yyyy' }} {{ movie.tv_release_date | date:'MMM d, yyyy' }}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Genre</strong>
+              </td>
+              <td>
+                {{ movie.movie_genres }} {{ movie.tv_genres }}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Rating</strong>
+              </td>
+              <td>
+                {{ movie.movie_rating }} {{ movie.tv_rating }}
+              </td>
+            </tr>
+          </table>
+          <button class="savethismoviebutton" ng-click="goToSignin()">Save this movie or show</button>
+          <button class="TvMovieToggleButton" ng-click="">Toggle- Movies or TV</button>
         </div>
 
-        <!-- Food Mini Description-->  
-        <div class="summary-wrapper u-cf">
-          <img src="{{ restaurant.restaurant_image_url }}" />
-          <p class="summary fade fade-restaurant">
-            {{ restaurant.restaurant_description }}
-          </p>
-          <p>
-            <a href="{{ restaurant.restaurant_url }}" target="_new">See Menu</a>
-          </p>
-        </div>
+        <div class="one-half column animate-show" ng-show="contentLoaded">
+          <div class="cta u-cf">
+            <a href="{{ restaurant.restaurant_url }}" target="_new" class="button"><i class="fa fa-cutlery"></i>&nbsp;Place An Order</a>
+          </div>
 
-        <!-- Food Cuisine and contact info-->
-        <table>
-          <tr>
-            <td>
-              <strong>Phone</strong>
-            </td>
-            <td>
-              <a href="tel:{{ restaurant.restaurant_phone }}">{{ restaurant.restaurant_phone }}</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Address</strong>
-            </td>
-            <td>
-              {{ restaurant.restaurant_street_address }} {{ restaurant.restaurant_city }} {{ restaurant.restaurant_zip }}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Serving</strong>
-            </td>
-            <td>
-              {{ restaurant.restaurant_cuisines }}
-            </td>
-          </tr>
-        </table>
-        <button class="savethisrestaurantbutton" ng-click="goToSignin()">Save this restaurant</button>
-        <button class="savematchbutton" ng-click="goToSignin()">Save this combo</button>
-      </div>
+          <!-- Food Mini Description-->
+          <div class="summary-wrapper u-cf">
+            <img src="{{ restaurant.restaurant_image_url }}" />
+            <p class="summary fade fade-restaurant">
+              {{ restaurant.restaurant_description }}
+            </p>
+            <p>
+              <a href="{{ restaurant.restaurant_url }}" target="_new">See Menu</a>
+            </p>
+          </div>
+
+          <!-- Food Cuisine and contact info-->
+          <table>
+            <tr>
+              <td>
+                <strong>Phone</strong>
+              </td>
+              <td>
+                <a href="tel:{{ restaurant.restaurant_phone }}">{{ restaurant.restaurant_phone }}</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Address</strong>
+              </td>
+              <td>
+                {{ restaurant.restaurant_street_address }} {{ restaurant.restaurant_city }} {{ restaurant.restaurant_zip }}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Serving</strong>
+              </td>
+              <td>
+                {{ restaurant.restaurant_cuisines }}
+              </td>
+            </tr>
+          </table>
+          <button class="savethisrestaurantbutton" ng-click="goToSignin()">Save this restaurant</button>
+          <button class="savematchbutton" ng-click="goToSignin()">Save this combo</button>
+        </div>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
 angular.module('cinePlate.profile', [])
 
 
-.controller('ProfileCtrl', function($scope, $window, Auth, Nav){
+.controller('ProfileCtrl', function($scope, $window, Auth, Nav) {
   $scope.userStats = {}
 
   $scope.user = {
@@ -16,13 +16,13 @@ angular.module('cinePlate.profile', [])
   $scope.emailClicked = false;
   $scope.locationClicked = false;
 
-  $scope.showPass = function(){
+  $scope.showPass = function() {
     $scope.passClicked = !$scope.passClicked;
   }
-  $scope.showEmail = function(){
+  $scope.showEmail = function() {
     $scope.emailClicked = !$scope.emailClicked;
   }
-  $scope.showLocation = function(){
+  $scope.showLocation = function() {
     $scope.locationClicked = !$scope.locationClicked;
   }
 
@@ -34,9 +34,9 @@ angular.module('cinePlate.profile', [])
     page: ''
   };
 
-  $scope.navigation = function(){
+  $scope.navigation = function() {
     console.log("nav has been triggered")
-    if ($scope.userChoice.page === 'My Profile'){
+    if ($scope.userChoice.page === 'My Profile') {
       Nav.profilePage()
     } else if ($scope.userChoice.page === 'Home') {
       Nav.matches($scope.userStats.user[0].location)
@@ -51,27 +51,27 @@ angular.module('cinePlate.profile', [])
   }
 
 
-  $scope.fetchUserStats = function(){
+  $scope.fetchUserStats = function() {
     Auth.fetchUser()
-    .then(function(resp){
-      $scope.userStats = resp;
-      console.log("user stats ", $scope.userStats)
-    })
-    .catch(function(resp){
-      console.error('Can not fetch User data. Are you logged in?')
-      console.error('Error in fetch user data ', err)
-    })
+      .then(function(resp) {
+        $scope.userStats = resp;
+        console.log("user stats ", $scope.userStats)
+      })
+      .catch(function(resp) {
+        console.error('Can not fetch User data. Are you logged in?')
+        console.error('Error in fetch user data ', err)
+      })
   }
 
-  $scope.changeStats = function(){
+  $scope.changeStats = function() {
     Auth.changeStats($scope.user)
-    .then(function(resp){
-      console.log("response from changeStats ", resp)
-      $scope.passClicked = false;
-      $scope.emailClicked = false;
-      $scope.locationClicked = false;
-      $scope.fetchUserStats();
-    })
+      .then(function(resp) {
+        console.log("response from changeStats ", resp)
+        $scope.passClicked = false;
+        $scope.emailClicked = false;
+        $scope.locationClicked = false;
+        $scope.fetchUserStats();
+      })
   }
 
 

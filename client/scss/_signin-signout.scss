@@ -1,17 +1,32 @@
 //
 // _signin-signout.scss
 //
-
-::-webkit-input-placeholder { color: #999; font-style: italic; font-weight: normal; }
-::-moz-placeholder { color: #999; font-style: italic; font-weight: normal; } /* firefox 19+ */
-:-ms-input-placeholder { color: #999; font-style: italic; font-weight: normal; } /* ie */
-input:-moz-placeholder { color: #999; font-style: italic; font-weight: normal; }
-
-.wrapper {
-  background-color: $primary_accent;  
+::-webkit-input-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
 }
-
-  .signin-signup-content {
+::-moz-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
+}
+/* firefox 19+ */
+:-ms-input-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
+}
+/* ie */
+input:-moz-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
+}
+.wrapper {
+  background-color: $primary_accent;
+}
+.signin-signup-content {
   width: 400px;
   padding: 8em 0 0;
   margin: auto;

@@ -1,10 +1,10 @@
 <!-- User Profile -->
 <div id="userProfile" style="margin:0 auto; text-align:center;">
   <div class="header" style="background-color:black; color: #ccc;">
-  <h1>My Profile</h1>
-  <select placeholder="Navigtion" class="navbar" ng-model="userChoice.page" ng-options="o as o for o in pages" ng-change="navigation()">
-  <option value="" style="width: 150px">- Nav -</option>
-  </select>
+    <h1>My Profile</h1>
+    <select placeholder="Navigtion" class="navbar" ng-model="userChoice.page" ng-options="o as o for o in pages" ng-change="navigation()">
+      <option value="" style="width: 150px">- Nav -</option>
+    </select>
   </div>
   <form name="profileForm" class="" action="index.html" method="post">
     <img src="http://market.ionic.io/img/user-default.png" alt="" style="height: 200px; width: 200px;" />
@@ -14,35 +14,35 @@
     <h4 class="setting"><span>Password <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;" ng-click="showPass()"></i></span>********</h4>
     <!-- input box to change password -->
     <form ng-submit="changeStats()">
-    <input ng-show="passClicked" type="password" ng-model='user.password' placeholder="New Password" required>
+      <input ng-show="passClicked" type="password" ng-model='user.password' placeholder="New Password" required>
     </form>
-    
+
     <h4 class="setting"><span>E-mail Address <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;" ng-click="showEmail()"></i></span>{{userStats.user[0].email}}</h4>
     <!-- input box to change email -->
     <form ng-submit="changeStats()">
-    <input ng-show="emailClicked" type="text" ng-model='user.email' placeholder="New Email" required>
+      <input ng-show="emailClicked" type="text" ng-model='user.email' placeholder="New Email" required>
     </form>
     <h4 class="setting"><span>Location <i class="fa fa-pencil-square-o" alt="*Edit*" style="margin-right: 30px;" ng-click="showLocation()"></i></span>{{userStats.user[0].location}}</h4>
     <!-- input box to change location -->
     <form ng-submit="changeStats()">
-    <input ng-show="locationClicked" type="text" ng-model='user.location' placeholder="New Default Location" required>
+      <input ng-show="locationClicked" type="text" ng-model='user.location' placeholder="New Default Location" required>
     </form>
 
   </form>
   <div class="" style="height: 500px; width: auto; background-color: #555;">
-    <h4 >Saved Pairings</h4>
-      <div class="" style="float: left; width: 140px; margin-left: 575px; padding-right: 10px; border-right: 5px solid #f8e71c;">
-        <h5>Movie/TV</h5>
-        <h6 ng-repeat="o in userStats.combos">
+    <h4>Saved Pairings</h4>
+    <div class="" style="float: left; width: 140px; margin-left: 575px; padding-right: 10px; border-right: 5px solid #f8e71c;">
+      <h5>Movie/TV</h5>
+      <h6 ng-repeat="o in userStats.combos">
           <a ng-href="{{o.movie_url}}">{{o.movie_title}}</a> <a ng-href="{{o.tv_url}}">{{o.tv_title}}</a>
         </h6>
-      </div>
-      <div class="" style="float:left; width: 140px; margin-left: 5px;">
-        <h5>Restaurant</h5>
-        <h6>
+    </div>
+    <div class="" style="float:left; width: 140px; margin-left: 5px;">
+      <h5>Restaurant</h5>
+      <h6>
           <a ng-repeat="o in userStats.combos" ng-href="{{o.restaurant_url}}">{{ o.restaurant_name }}<br><br></a>
         </h6>
-      </div>
+    </div>
   </div>
 </div>
 

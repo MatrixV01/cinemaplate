@@ -1,38 +1,37 @@
 var netflixRoulette = require('netflix-roulette');
 var rp = require('request-promise');
 
-var getNetflixByTitle = function(title){
-  return netflixRoulette.title(title, function(error, data){
-    if(error){
+var getNetflixByTitle = function(title) {
+  return netflixRoulette.title(title, function(error, data) {
+    if (error) {
       console.log('error: ', error);
-    }
-    else {
+    } else {
       console.log('got netflix response: ', data)
     }
   });
 }
 
 var NetflixRoulettePromise = {
-  options: function(title){
+  options: function(title) {
     var page = page ? page : 1;
     return {
-        uri: 'http://netflixroulette.net/api/api.php',
-        qs: {
-            title: title // -> uri + '?access_token=xxxxx%20xxxxx' 
-        },
-        headers: {
-            'User-Agent': 'Request-Promise'
-        },
-        json: true // Automatically parses the JSON string in the response 
+      uri: 'http://netflixroulette.net/api/api.php',
+      qs: {
+        title: title // -> uri + '?access_token=xxxxx%20xxxxx'
+      },
+      headers: {
+        'User-Agent': 'Request-Promise'
+      },
+      json: true // Automatically parses the JSON string in the response
     };
   },
-  title: function(title){
+  title: function(title) {
     var options = this.options(title);
     return rp(options)
-      .then(function (response){
+      .then(function(response) {
         console.log('netflix response: ', response);
       })
-      .catch(function(error){
+      .catch(function(error) {
         console.log('error: ', error.error.message);
       });
   }
@@ -40,33 +39,33 @@ var NetflixRoulettePromise = {
 
 
 var MovieDB = {
-  options: function(url, page){
+  options: function(url, page) {
     var page = page ? page : 1;
     return {
-        uri: url,
-        qs: {
-            page: page,
-            api_key: process.env.MOVIEDB_TOKEN // -> uri + '?access_token=xxxxx%20xxxxx' 
-        },
-        headers: {
-            'User-Agent': 'Request-Promise'
-        },
-        json: true // Automatically parses the JSON string in the response 
+      uri: url,
+      qs: {
+        page: page,
+        api_key: process.env.MOVIEDB_TOKEN // -> uri + '?access_token=xxxxx%20xxxxx'
+      },
+      headers: {
+        'User-Agent': 'Request-Promise'
+      },
+      json: true // Automatically parses the JSON string in the response
     };
   },
 
-  genres: function(){
+  genres: function() {
     var options = this.options('http://api.themoviedb.org/3/genre/movie/list');
     return rp(options)
-        .then(function (response) {
-          return response;
-        })
-        .catch(function (error) {
-          console.log('error: ', error);
-        });
+      .then(function(response) {
+        return response;
+      })
+      .catch(function(error) {
+        console.log('error: ', error);
+      });
   },
 
-  getMoviesByGenreId: function(genreId, page){
+  getMoviesByGenreId: function(genreId, page) {
     var options = this.options('http://api.themoviedb.org/3/genre/' + genreId + '/movies', page);
     return rp(options)
       .then(function(response) {
@@ -91,13 +90,13 @@ var Reddit = {
     },
     json: true // Automatically parses the JSON string in the response
   },
-  getTop100: function(){
+  getTop100: function() {
     var options = this.options;
     return rp(options)
-      .then(function(response){
+      .then(function(response) {
         return response.data.children;
       })
-      .catch(function(error){
+      .catch(function(error) {
         console.log('error: ', error);
       });
   }
@@ -122,7 +121,7 @@ var Reddit = {
 //       console.log(film)
 //     })
 //   });
-  
+
 // NetflixRoulettePromise.title('Donnie Darko')
 // .then(function(response){
 //   console.log(response);

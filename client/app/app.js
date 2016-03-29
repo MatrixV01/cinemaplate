@@ -20,7 +20,7 @@ angular.module('cinePlate', [require('angular-route'), require('angular-animate'
 
   // The /match route is where the results of a zip code
   // lookup are loaded.
-  .when('/signin', {
+    .when('/signin', {
     templateUrl: 'app/auth/signin.html',
     controller: 'AuthCtrl'
   })
@@ -44,8 +44,8 @@ angular.module('cinePlate', [require('angular-route'), require('angular-animate'
   })
 
   .when('/:zip', {
-  templateUrl: 'app/match/match.html',
-  controller: 'MatchCtrl'
+    templateUrl: 'app/match/match.html',
+    controller: 'MatchCtrl'
   })
 
   // Load up the splash page so user can enter their zip.

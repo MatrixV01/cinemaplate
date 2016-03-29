@@ -1,37 +1,49 @@
 //
 // _splash.scss
 //
-
-::-webkit-input-placeholder { color: #999; font-style: italic; font-weight: normal; }
-::-moz-placeholder { color: #999; font-style: italic; font-weight: normal; } /* firefox 19+ */
-:-ms-input-placeholder { color: #999; font-style: italic; font-weight: normal; } /* ie */
-input:-moz-placeholder { color: #999; font-style: italic; font-weight: normal; }
-
-.wrapper {
-  background-color: $primary_accent;  
+::-webkit-input-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
 }
-
+::-moz-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
+}
+/* firefox 19+ */
+:-ms-input-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
+}
+/* ie */
+input:-moz-placeholder {
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
+}
+.wrapper {
+  background-color: $primary_accent;
+}
 .splash-content {
   width: 400px;
   padding: 8em 0 0;
   margin: auto;
 }
-
 .splash-logo {
   max-width: 80%;
   display: block;
   margin: 0 auto;
 }
-
 .splash-lead {
   border-top: 1px solid darken($primary_accent, 5);
   font-size: 2rem;
   color: #fff;
   text-align: center;
-  margin: 1em 0 1em;
+  margin: 1em 0;
   padding: 1em;
 }
-
 .splash-zip-form {
   input {
     height: 70px;
@@ -49,7 +61,6 @@ input:-moz-placeholder { color: #999; font-style: italic; font-weight: normal; }
       outline: none;
     }
   }
-
   button.button-primary {
     background: #2bb2c0;
     background: darken($primary_accent, 15);
@@ -62,7 +73,7 @@ input:-moz-placeholder { color: #999; font-style: italic; font-weight: normal; }
       border-color: $headers_bg;
       background-color: $headers_bg;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
     &:disabled {
